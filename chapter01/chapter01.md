@@ -46,12 +46,54 @@
     - [http://ppp-lab.sakura.ne.jp/cpp/language/index.html]()
 
 
-## 課題に関して
+## 課題に関して(1)
 
 - 統合開発環境(IDE)は使わないこと
   - Visual Studio eclipseなど
   - IDEは単なるコンパイラのフロントエンドに過ぎない
   - 裏で発行されているコマンド，オプションは知っておくべき
+- テキストエディタとコマンドラインでプログラミングすること
+
+
+## 課題に関して(2)
+
+- 課題には好きなコンパイラ，好きなOSを用いてよい
+  - しかし，別のコンパイラ，別のOSでもコンパイルと動作が可能にすること
+- 用いるテキストエディタも自由
+  - 個人的には**Vim**というテキストエディタがオススメ
+  - *Emacs*もかなり強力
+
+
+## 開発環境
+
+- Windowsなら
+  - Visual StudioのC/C++コンパイラを利用
+  - 仮想マシン(VirtualBox, VMWare)上のLinuxでgcc/g++を利用
+  - Cygwinでgcc/g++を利用
+  - MinGWでgcc/g++を利用
+- MacやUNIX/Linuxについては割愛
+
+
+## テキストエディタ(Windows)
+
+- メモ帳(notepad.exe)のような情弱エディタ以外なら，何でもよい
+- 以下が有名なテキストエディタ
+  - [Vim](http://www.kaoriya.net/software/vim/)
+  - [Emacs](http://sourceforge.jp/projects/gnupack/)
+  - [Sublime Text](http://www.sublimetext.com/)
+  - [秀丸エディタ](http://hide.maruo.co.jp/software/hidemaru.html)
+  - [notepad++](http://notepad-plus-plus.org/)
+  - [サクラエディタ](http://sakura-editor.sourceforge.net/)
+  - [TeraPad](http://www5f.biglobe.ne.jp/~t-susumu/)
+
+
+## テキストエディタ(Mac, UNIX/Linux)
+
+- 以下のいずれかのテキストエディタで十分
+  - **Vim**
+  - *Emacs*
+  - Sublime Text
+- まぁ，これら以外知らないんですが...
 
 
 
@@ -397,7 +439,7 @@ RM               | ファイル消去コマンド
 CFLAGS           | C言語のコンパイル時に用いるオプション
 CXXFLAGS         | C++のコンパイル時に用いるオプション
 LDFLAGS          | リンク時に用いるオプション
-LDFLAGS          | 外部ライブラリを指定
+LDLIBS           | 外部ライブラリのリンクオプション
 
 
 ## 動的マクロ
