@@ -299,7 +299,7 @@ $ gcc -s -Ofast -flto -o sample.out sample.c
   - MSVCのmake
   - 機能は貧弱
 
-MSVCならnmake，をれ以外ならmakeを想定してよい
+MSVCならnmake，それ以外ならmakeを想定してよい
 
 Free BSDなどにおいては，makeはBSD makeで，GNU makeがgmakeというコマンド名
 
