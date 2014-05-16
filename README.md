@@ -11,3 +11,7 @@
 
 - GitHubのMarkdown版
   - [第1回](https://github.com/koturn/LabStudyMeetingSlide2014/blob/gh-pages/chapter01/chapter01.md)
+
+
+## LICENSE
+This software is released under the MIT License, see LICENSE.
