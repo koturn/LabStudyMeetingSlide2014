@@ -8,9 +8,11 @@
 
 - reveal.js版
   - [第1回](http://koturn.github.io/LabStudyMeetingSlide2014/chapter01/chapter01.html)
+  - [第2回](http://koturn.github.io/LabStudyMeetingSlide2014/chapter02/chapter02.html)
 
 - GitHubのMarkdown版
   - [第1回](https://github.com/koturn/LabStudyMeetingSlide2014/blob/gh-pages/chapter01/chapter01.md)
+  - [第2回](https://github.com/koturn/LabStudyMeetingSlide2014/blob/gh-pages/chapter02/chapter02.md)
 
 
 ## LICENSE
