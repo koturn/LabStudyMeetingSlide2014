@@ -244,7 +244,7 @@ $ ar rcs libmylib.a foo.o bar.o baz.o
 
 myutil.h
 
-```sh
+```c
 #ifndef MYUTIL_H
 #define MYUTIL_H
 
@@ -255,7 +255,7 @@ int myadd(int a, int b);
 
 myutil.c
 
-```sh
+```c
 #include "myutil.h"
 
 int myadd(int a, int b) {
@@ -268,7 +268,7 @@ int myadd(int a, int b) {
 
 main.c
 
-```sh
+```c
 #include <stdio.h>
 include "myutil.h"
 
@@ -418,7 +418,7 @@ shared object file: No such file or directory
   - これを守らないと，リンクできない
 1. 名前の先頭には **lib** を付加する
 2. 拡張子は **.so** とする
-- 例: **lib**myutil**.so**
+- 例: **lib** myutil **.so**
 
 
 ## Cygwinの場合
