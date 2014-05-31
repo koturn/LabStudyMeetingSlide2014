@@ -270,7 +270,7 @@ main.c
 
 ```c
 #include <stdio.h>
-include "myutil.h"
+#include "myutil.h"
 
 int main(void) {
   printf("myadd(1, 5) = %d\n", myadd(1, 5));
