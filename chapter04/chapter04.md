@@ -164,7 +164,7 @@ int main(void) {
 
 - コンパイル時に -fopenmp を付加する必要がある
 
-```c
+```sh
 $ gcc -c -fopenmp mptest.c -o mptest.o
 $ gcc -fopenmp mptest.o -o mptest.out
 ```
@@ -176,7 +176,7 @@ $ gcc -fopenmp mptest.o -o mptest.out
 - Visual Studio 2010以前のExpress EditionにOpenMPは含まれない
   - 2012以降なら含まれる
 
-```c
+```sh
 $ cl.exe -c /openmp mptest.c
 $ cl.exe mptest.obj /openmp
 ```
@@ -316,7 +316,9 @@ for (int i = 0; i < 10000; i++) {
     - わかりやすい
 
 
-- ```tbb::parallel_for```と```tbb::parallel_reduce```引数
+## TBBの関数の引数
+
+- ```tbb::parallel_for()```と```tbb::parallel_reduce()```の引数
 
 引数             | 機能
 -----------------|--------------------------------------------------------
@@ -517,7 +519,7 @@ integral(double (*f)(double x), double a, double b, size_t n)
 #include <cstdlib>
 
 static void *
-thread_func(void *va_args);
+threadFunc(void *va_args);
 
 static double
 integral(double (*f)(double x), double a, double b, size_t n);
@@ -551,7 +553,7 @@ int main(void) {
   for (int i = 0; i < N_THREADS; i++) {
     IntegralAttr ia = {sin, range * i, range * (i + 1), N_DIV / N_THREADS, 0.0};
     ias[i] = ia;
-    if (pthread_create(&threads[i], NULL, thread_func, &ias[i]) != 0) {
+    if (pthread_create(&threads[i], NULL, threadFunc, &ias[i]) != 0) {
       std::fprintf(stderr, "error: pthread_create thread[%d]\n", i);
       return EXIT_FAILURE;
     }
@@ -578,7 +580,7 @@ int main(void) {
 
 ```cpp
 static void *
-thread_func(void *va_args)
+threadFunc(void *va_args)
 {
   IntegralAttr *ia = (IntegralAttr *) va_args;
   ia->retval = integral(ia->f, ia->a, ia->b, ia->n);
@@ -1201,7 +1203,7 @@ float dotAVX(float *input, float *weight, int n) {
   - ```__global__```との併用は不可
 
 
-## メモリの指定
+## メモリの修飾子
 
 - ```__device__```
   - グローバルメモリ領域に確保
@@ -1616,7 +1618,7 @@ CUDAをインストールすると，OpenCLもついてくる！
 
 ## OpenCLプログラムの処理手順
 
-1. コンテキストの作成(**```clCreateContext()```**)
+1. コンテキストの作成(```clCreateContext()```)
 2. コンテキストに含まれるデバイス取得(```clGetContextInfo()```)
 3. コマンドキューの作成(```clCreateCommandQueue()```)
 4. プログラムオブジェクトの作成(```clCreateProgramWithSource()```)
