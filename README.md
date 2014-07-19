@@ -21,6 +21,7 @@
   - [第3回](https://github.com/koturn/LabStudyMeetingSlide2014/blob/gh-pages/chapter03/chapter03.md)
   - [第4回](https://github.com/koturn/LabStudyMeetingSlide2014/blob/gh-pages/chapter04/chapter04.md)
   - [第5回](https://github.com/koturn/LabStudyMeetingSlide2014/blob/gh-pages/chapter05/chapter05.md)
+  - [第6回](https://github.com/koturn/LabStudyMeetingSlide2014/blob/gh-pages/chapter06/chapter06.md)
   - [おまけ](https://github.com/koturn/LabStudyMeetingSlide2014/blob/gh-pages/chapterOmake/omake.md)
 
 
