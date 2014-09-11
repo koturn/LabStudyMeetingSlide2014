@@ -25,5 +25,10 @@
   - [おまけ](https://github.com/koturn/LabStudyMeetingSlide2014/blob/gh-pages/chapterOmake/omake.md)
 
 
+## 演習問題
+
+以下は演習問題へのリンクは[こちら](https://onedrive.live.com/?cid=EDB395926E546ED3&id=EDB395926E546ED3%21111)です．
+
+
 ## LICENSE
 This software is released under the MIT License, see LICENSE.
