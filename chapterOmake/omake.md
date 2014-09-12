@@ -120,7 +120,7 @@
 - GitHubのリポジトリ
   - https://github.com/USERNAME/USERNAME.github.io
 - GitHub Pages
-  - http://USERNAME.github.io/
+  - http://USERNAME.github.io
 
 
 ## gh-pages ブランチを作成する場合
@@ -131,10 +131,6 @@ $ git branch gh-pages
 
 # gh-pagesブランチに移動
 $ git checkout gh-pages
-
-# コミットなど
-$ git add .
-$ git commit -m "Initial commit on gh-pages"
 
 # GitHubにpush
 $ git push origin gh-pages
@@ -149,12 +145,12 @@ $ git push origin gh-pages
 - GitHubのリポジトリ
   - https://github.com/USERNAME/REPOSITORY
 - GitHub Pages
-  - http://USERNAME.github.io/REPOSITORY/
+  - http://USERNAME.github.io/REPOSITORY/path/to/file
 
 
-## GitHub PagesのURL 例
+## GitHub PagesのURL (例)
 
-このスライドのURLが実例
+**このスライド** のURLが実例
 
 - GitHubのリポジトリ
   - https://github.com/koturn/chapterOmake
