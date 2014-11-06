@@ -30,8 +30,9 @@ koturnが研究室で行ったプログラミング勉強会のスライドで�
 
 ## 演習問題
 
-以下は演習問題へのリンクは[こちら](https://onedrive.live.com/?cid=EDB395926E546ED3&id=EDB395926E546ED3%21111)です．
+演習問題へのリンクは[こちら](https://onedrive.live.com/?cid=EDB395926E546ED3&id=EDB395926E546ED3%21111)です．
 
 
 ## LICENSE
-This software is released under the MIT License, see LICENSE.
+
+This software is released under the MIT License, see (LICENSE)[LICENSE].
