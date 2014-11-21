@@ -35,4 +35,4 @@ koturnが研究室で行ったプログラミング勉強会のスライドで�
 
 ## LICENSE
 
-This software is released under the MIT License, see (LICENSE)[LICENSE].
+This software is released under the MIT License, see [LICENSE](LICENSE).
