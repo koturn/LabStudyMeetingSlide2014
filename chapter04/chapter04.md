@@ -885,14 +885,14 @@ SIMD命令の組み込み関数を使用するには，特定ヘッダファイ�
 使用できる機能 | ヘッダファイル
 ---------------|---------------
 SSE            | mmintrin.h
-SSE2           | xmintrin.h
-SSE3           | pmintrin.h
-SSEE3          | tmintrin.h
-SSE4A          | amintrin.h
-SSE4.1         | smintrin.h
-SSE4.2         | nmintrin.h
-AES暗号化      | wmintrin.h
-AVX            | imintrin.h
+SSE2           | xmmintrin.h
+SSE3           | pmmintrin.h
+SSEE3          | tmmintrin.h
+SSE4A          | ammintrin.h
+SSE4.1         | smmintrin.h
+SSE4.2         | nmmintrin.h
+AES暗号化      | wmmintrin.h
+AVX            | immintrin.h
 
 
 ## SIMD組み込み関数とヘッダファイル (2)
