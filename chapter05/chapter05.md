@@ -546,7 +546,7 @@ void arrayCopy(VType *dst, const VType *src, int n) {
   }
 }
 
-// 特殊化: int型用に特化
+// 特殊化: char型用に特化
 template<>
 void arrayCopy(char *dst, const char *src, int n) {
   std::memcpy(dst, src, sizeof(char) * n);
