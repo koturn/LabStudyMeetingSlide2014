@@ -966,7 +966,7 @@ alignedMalloc(size_t size, size_t alignment) {
 }
 
 static inline void
-alignedMalloc(void *ptr) {
+alignedFree(void *ptr) {
 #ifdef _MSC_VER
   _aligned_free(ptr);
 #else

@@ -73,7 +73,7 @@ printf("add value = %d\n", ADD(2, 3));
 
 ## \#define 消去マクロの利用例
 
-- C99以降の``restrict```をC99以前のコンパイラで消去
+- C99以降の```restrict```をC99以前のコンパイラで消去
 - C++11以降の```constexpr```をC++11以前のコンパイラで消去
 
 ```cpp
