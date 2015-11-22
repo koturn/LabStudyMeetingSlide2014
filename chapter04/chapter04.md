@@ -1012,7 +1012,7 @@ ALIGNAS(16) char array[65536];
 以下のドット積のコードをSSEで書き直す
 
 ```cpp
-float fsumNormal(float *input, float *weight, int n) {
+float dotNormal(float *input, float *weight, int n) {
   float sum = 0.0;
   for (int i = 0; i < n; i++) {
     sum += input[i] * weight[i];
@@ -1025,7 +1025,7 @@ float fsumNormal(float *input, float *weight, int n) {
 ## SSE: サンプルコード (2)
 
 ```cpp
-float fsumSSE(float *input, float *weight, int n) {
+float dotSSE(float *input, float *weight, int n) {
   static const int OFFSET = sizeof(__m128) / sizeof(float);  // 16 / 4 == 4
   std::div_t lp = std::div(n, OFFSET);
   __m128 w, x, u;
@@ -1039,7 +1039,7 @@ float fsumSSE(float *input, float *weight, int n) {
   }
   _mm_store_ps(mm, u);
 
-  double sum = 0.0;
+  float sum = 0.0;
   for (int i = 0; i < OFFSET; i++) {
     sum += mm[i];
   }
