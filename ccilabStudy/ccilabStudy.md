@@ -727,6 +727,9 @@ NeoBundle 'Shougo/neosnippet-snippets'
     - 第三引数のラムダの引数が面倒
 - そこでneosnippet
 
+
+## Shougo/neosnippet (6)
+
 ```cpp
 std::sort(
   hogeVct.begin(),
@@ -736,8 +739,10 @@ std::sort(
   });
 ```
 
+![sortLambda.png](img/sortLambda.png)
 
-## Shougo/neosnippet (6)
+
+## Shougo/neosnippet (7)
 
 - 以下のようなスニペットを定義
     - `${1}`，`${2}`は実際にカーソルを持ってきて入力するところ
@@ -759,14 +764,14 @@ snippet sort
 ```
 
 
-## Shougo/neosnippet (7)
+## Shougo/neosnippet (8)
 
 - neosnippet（とwandbox-vim）のデモ
 
 ![img/neosnippet.gif](img/neosnippet.gif)
 
 
-## Shougo/neosnippet (7)
+## Shougo/neosnippet (9)
 
 - C++向けスニペット例
 
@@ -799,7 +804,7 @@ snippet def_gcd
 ```
 
 
-## Shougo/neosnippet (8)
+## Shougo/neosnippet (10)
 
 - プログラムのテンプレートをスニペットにしてもよい
 - バッククオートで囲った部分は，Vim scriptの式として解釈される
@@ -834,13 +839,13 @@ snippet main
 ```
 
 
-## Shougo/neosnippet (9)
+## Shougo/neosnippet (11)
 
 - ただし，テンプレート挿入に特化したプラグインがあるので，必ずしもスニペットにする必要は無い
     - [thinca/vim-template](https://github.com/thinca/vim-template)
     - [mattn/sonictemplate-vim](https://github.com/mattn/sonictemplate-vim)
     - [koturn/vim-kotemplate](https://github.com/koturn/vim-kotemplate)
- [kotemplate用のテンプレートファイル集](https://github.com/koturn/kotemplate)
+        - [kotemplate用のテンプレートファイル集](https://github.com/koturn/kotemplate)
 
 
 
@@ -1123,7 +1128,7 @@ endif
 
 ## katono/rogue.vim (1)
 
-- rogue clone II のVim移植版
+- Rogue-clone II のVim移植版
 - `has('lua')` が `1` になるVimで実行できる
     - `if_lua` を用いることにより，大幅に処理を高速化している
 - インストールや設定は以下
