@@ -17,7 +17,8 @@ koturnが研究室で行ったプログラミング勉強会のスライドで�
   - [第5回](http://koturn.github.io/LabStudyMeetingSlide2014/chapter05/chapter05.html)
   - [第6回](http://koturn.github.io/LabStudyMeetingSlide2014/chapter06/chapter06.html)
   - [おまけ](http://koturn.github.io/LabStudyMeetingSlide2014/chapterOmake/omake.html)
-  - [CCILAB内勉強会](http://koturn.github.io/LabStudyMeetingSlide2014/ccilabStudy/ccilabStudy.html)
+  - [CCILAB内勉強会 01](http://koturn.github.io/LabStudyMeetingSlide2014/ccilabStudy/ccilabStudy.html)
+  - [CCILAB内勉強会 02](http://koturn.github.io/LabStudyMeetingSlide2014/ccilabStudy02/ccilabStudy02.html)
 
 - GitHub Flavored Markdown版
   - [第1回](https://github.com/koturn/LabStudyMeetingSlide2014/blob/gh-pages/chapter01/chapter01.md)
@@ -27,7 +28,8 @@ koturnが研究室で行ったプログラミング勉強会のスライドで�
   - [第5回](https://github.com/koturn/LabStudyMeetingSlide2014/blob/gh-pages/chapter05/chapter05.md)
   - [第6回](https://github.com/koturn/LabStudyMeetingSlide2014/blob/gh-pages/chapter06/chapter06.md)
   - [おまけ](https://github.com/koturn/LabStudyMeetingSlide2014/blob/gh-pages/chapterOmake/omake.md)
-  - [CCILAB内勉強会](https://github.com/koturn/LabStudyMeetingSlide2014/blob/gh-pages/ccilabStudy/ccilabStudy.md)
+  - [CCILAB内勉強会 01](https://github.com/koturn/LabStudyMeetingSlide2014/blob/gh-pages/ccilabStudy/ccilabStudy.md)
+  - [CCILAB内勉強会 02](https://github.com/koturn/LabStudyMeetingSlide2014/blob/gh-pages/ccilabStudy02/ccilabStudy02.md)
 
 
 ## 演習問題
