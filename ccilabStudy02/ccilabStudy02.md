@@ -940,8 +940,8 @@ tes(int a)
 {
   if (a <= 0) {
     throw std::runtime_error(
-        "File: " __FILE__ "
-        at line " MACRO_EXPAND(__LINE__) " " +
+        "File: " __FILE__
+        " at line " MACRO_EXPAND(__LINE__) " " +
         std::string(__DBG_FUNCTION__) + "> An error occured");
   }
   return a - 1;
@@ -991,8 +991,8 @@ File: sample.cpp at line 19 int tes(int)> An error occured
 
 ```cpp
 throw std::runtime_error(
-    "\x1b[31mFile: " __FILE__ "
-    at line " + std::to_string(__LINE__) + " " +
+    "\x1b[31mFile: " __FILE__
+    " at line " + std::to_string(__LINE__) + " " +
     std::string(__DBG_FUNCTION__) + "> An error occured\x1b\039[31m");
 ```
 
