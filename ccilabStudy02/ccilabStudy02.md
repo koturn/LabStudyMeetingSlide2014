@@ -951,6 +951,30 @@ tes(int a)
 
 ## 例外を投げる (4)
 
+- いちいち例外を投げた箇所
+
+```cpp
+// 略
+
+#define MACRO_EXPAND(x)  MACRO_STR(x)
+#define MACRO_STR(x)  #x
+
+#define MAKE_EXCEPTION_MSG(msg) \
+  ("File: " __FILE__ " at line " MACRO_EXPAND(__LINE__) " " + std::string(__DBG_FUNCTION__) + "> " + msg)
+
+int
+tes(int a)
+{
+  if (a <= 0) {
+    throw std::runtime_error(MAKE_EXCEPTION_MSG("An error occured"));
+  }
+  return a - 1;
+}
+```
+
+
+## 例外を投げる (5)
+
 - `main()` 関数はこんな感じで
 
 ```cpp
@@ -975,25 +999,24 @@ File: sample.cpp at line 19 int tes(int)> An error occured
 ```
 
 
-
-
 ![touko_ansiescape01.png](img/touko_ansiescape01.png)
 
 
 ![touko_ansiescape02.png](img/touko_ansiescape02.png)
 
 
-## 例外を投げる (5)
+## 例外を投げる (6)
 
 - 文字色を付けたいなら，以下のように投げる
     - ANSIエスケープシーケンス対応のターミナルエミュレータでないと不可
     - リダイレクトすると，特殊文字はそのまま残ってしまう
 
 ```cpp
-throw std::runtime_error(
-    "\x1b[31mFile: " __FILE__
-    " at line " + std::to_string(__LINE__) + " " +
-    std::string(__DBG_FUNCTION__) + "> An error occured\x1b\039[31m");
+#define MAKE_EXCEPTION_MSG(msg) \
+  ("\x1b[31mFile: " __FILE__ " at line " MACRO_EXPAND(__LINE__) " " + std::string(__DBG_FUNCTION__) + ">\x1b[39m " + msg)
+
+// ...
+  throw std::runtime_error(MAKE_EXCEPTION_MSG("An error occured"));
 ```
 
 
@@ -1259,7 +1282,7 @@ main()
 
 ```txt
 File: prog.cc at line 46, int main()
-File: prog.cc at line 48, int main()> Hello
+File: prog.cc at line 47, int main()> Hello
 ```
 
 
