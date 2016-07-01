@@ -93,7 +93,7 @@
 
 ## WIn32/Win64 API (1)
 
-スレッド関数群(```<process.h>```)
+スレッド関数群(`<process.h>`)
 
 関数名         |   特徴
 ---------------|-----------------------------------------------------
@@ -103,7 +103,7 @@ _beginthreadEx | スレッドハンドルは自分で閉じる必要があるが
 
 ## WIn32/Win64 API (2)
 
-スレッド関数群(```<windows.h>```)
+スレッド関数群(`<windows.h>`)
 
 関数名         |   特徴
 ---------------|-------------------------------------------------
@@ -113,13 +113,13 @@ CloseHandle    | スレッドハンドルを閉じるのに用いる
 
 ## 各スレッド生成関数の比較
 
-- ```_beginthread()```
+- `_beginthread()`
   - 自動でハンドルを閉じる
   - 予期せぬタイミングでハンドルが閉じられることも
-- ```_beginthreadex()```
+- `_beginthreadex()`
   - 手動でハンドルを閉じる必要がある
   - 一番安全
-- ```CreateThread()```
+- `CreateThread()`
   - 手動でハンドルを閉じる必要がある
   - スレッド関数内でCランタイム関数を用いると，メモリリークが発生する
 
@@ -228,11 +228,11 @@ for (int i = 0; i < size; i++) {
 - データ操作にはアトミック性を確保しなくてはならない
   - リダクション演算など
 - OpenMPでの書き方
-  - ```#pragma omp critical```
+  - `#pragma omp critical`
     - 直後の一文は一度に1スレッドしか実行できないようにする
-  - ```#pragma omp atomic```
+  - `#pragma omp atomic`
     - 直後の変数更新の一文に対するアトミック性の確保
-    - ```#pragma omp critical```より性能面で良い
+    - `#pragma omp critical` より性能面で良い
   - reduction指示節
     - リダクション演算を行う変数を指定
 
@@ -318,7 +318,7 @@ for (int i = 0; i < 10000; i++) {
 
 ## TBBの関数の引数
 
-- ```tbb::parallel_for()```と```tbb::parallel_reduce()```の引数
+- `tbb::parallel_for()` と `tbb::parallel_reduce()` の引数
 
 引数             | 機能
 -----------------|--------------------------------------------------------
@@ -628,7 +628,7 @@ typedef struct {
 
 ## Win thread: 積分プログラム (2)
 
-- ```main()```関数
+- `main()` 関数
 
 ```cpp
 int main(void) {
@@ -832,8 +832,18 @@ int main(void) {
   - AVX
     - Advanced VectoreXtensions
     - 256bitレジスタ(YMMレジスタ)を用いたベクトル計算
+  - AVX512
+    - 512bitのレジスタ(ZMMレジスタ)を用いたベクトル計算
 - 主にIntel社のCPU
 - マルチスレッド/マルチプロセスとの併用可
+
+
+## ARM CPUのSIMD
+
+- SIMDはIntelのCPUだけのものではない
+- ARM CPUでもSIMD命令は用意されている
+  - NEON命令
+    - 128bitのレジスタを用いたベクトル計算
 
 
 ## 実用例
@@ -884,15 +894,16 @@ SIMD命令の組み込み関数を使用するには，特定ヘッダファイ�
 
 使用できる機能 | ヘッダファイル
 ---------------|---------------
-SSE            | mmintrin.h
-SSE2           | xmmintrin.h
-SSE3           | pmmintrin.h
-SSEE3          | tmmintrin.h
-SSE4A          | ammintrin.h
-SSE4.1         | smmintrin.h
-SSE4.2         | nmmintrin.h
-AES暗号化      | wmmintrin.h
-AVX            | immintrin.h
+SSE            | `mmintrin.h`
+SSE2           | `xmmintrin.h`
+SSE3           | `pmmintrin.h`
+SSEE3          | `tmmintrin.h`
+SSE4A          | `ammintrin.h`
+SSE4.1         | `smmintrin.h`
+SSE4.2         | `nmmintrin.h`
+AES暗号化      | `wmmintrin.h`
+AVX            | `immintrin.h`
+NEON           | `arm_neon.h`
 
 
 ## SIMD組み込み関数とヘッダファイル (2)
@@ -916,11 +927,11 @@ gcc/g++ for x86 | x86intrin.h
   - 通常の変数は，（現代的な環境なら）4byteアラインメント
 - 変数宣言時にアラインメントを指定する必要がある
   - gcc/g++
-    - ```__attribute__((aligned(16)) int a;```
+    - `__attribute__((aligned(16)) int a;`
   - MSVC
-    - ```__declspec(align(16)) int a;```
+    - `__declspec(align(16)) int a;`
   - C++11以降
-    - ```alignas(16) int a;```
+    - `alignas(16) int a;`
 - 指定しないと落ちる関数がある
   - アライメントを考慮しなくていい関数は少し性能が悪い
 
@@ -929,18 +940,18 @@ gcc/g++ for x86 | x86intrin.h
 
 - アラインメントを考慮してメモリを動的確保するには
   - cl.exeの場合
-    - ```_aligned_malloc()``` 関数でメモリ確保
-    - ```_aligned_free()``` 関数でメモリ解放
+    - `_aligned_malloc()` 関数でメモリ確保
+    - `_aligned_free()` 関数でメモリ解放
   - その他
-    - ```posix_memalign()```関数でメモリ確保
-    - ```free()```関数でメモリ解放
+    - `posix_memalign()` 関数でメモリ確保
+    - `free()` 関数でメモリ解放
   - 非推奨
     - Intel CPUのみ
-      - ```_mm_malloc()```関数でメモリ確保
-      - ```_mm_free()```関数でメモリ解放
+      - `_mm_malloc()` 関数でメモリ確保
+      - `_mm_free()` 関数でメモリ解放
     - やや古い？
-      - ```memalign()```関数でメモリ確保
-      - ```free()```関数でメモリ解放
+      - `memalign()` 関数でメモリ確保
+      - `free()` 関数でメモリ解放
 
 
 ## 注意点: アラインメント (3)
@@ -1009,7 +1020,7 @@ ALIGNAS(16) char array[65536];
 
 ## SSE: サンプルコード (1)
 
-以下のドット積のコードをSSEで書き直す
+以下のドット積のコードをSSE/AVXで書き直す
 
 ```cpp
 float dotNormal(float *input, float *weight, int n) {
@@ -1027,13 +1038,13 @@ float dotNormal(float *input, float *weight, int n) {
 ```cpp
 float dotSSE(float *input, float *weight, int n) {
   static const int OFFSET = sizeof(__m128) / sizeof(float);  // 16 / 4 == 4
-  std::div_t lp = std::div(n, OFFSET);
+  int rem = n % OFFSET;
   __m128 w, x, u;
   ALIGNAS(sizeof(__m128)) float mm[OFFSET] = {0};
   u = _mm_load_ps(mm);
-  for (int i = 0, j = 0; i < lp.quot; i++, j += OFFSET) {
-    w = _mm_load_ps(&input[j]);
-    x = _mm_load_ps(&weight[j]);
+  for (int i = 0; i < n; i += OFFSET) {
+    w = _mm_load_ps(&input[i]);
+    x = _mm_load_ps(&weight[i]);
     x = _mm_mul_ps(w, x);
     u = _mm_add_ps(u, x);
   }
@@ -1043,8 +1054,8 @@ float dotSSE(float *input, float *weight, int n) {
   for (int i = 0; i < OFFSET; i++) {
     sum += mm[i];
   }
-  for (int i = 0, j = lp.quot * OFFSET; i < lp.rem; i++, j++) {
-    sum += input[j] * weight[j];
+  for (int i = n - rem; i < n; i++) {
+    sum += input[i] * weight[i];
   }
   return sum;
 }
@@ -1058,24 +1069,24 @@ float dotSSE(float *input, float *weight, int n) {
 ```cpp
 float dotAVX(float *input, float *weight, int n) {
   static const std::size_t OFFSET = sizeof(__m256) / sizeof(input[0]);  // 32 / 4 == 8
-  std::div_t lp = std::div(n, OFFSET);
+  int rem = n % OFFSET;
   __m256 w, x, u;
   ALIGNAS(sizeof(__m256)) float mm[OFFSET] = {0};
   u = _mm256_load_ps(mm);
-  for (int i = 0, j = 0; i < lp.quot; i++, j += OFFSET) {
-    w = _mm256_load_ps(&input[j]);
-    x = _mm256_load_ps(&weight[j]);
+  for (int i = 0; i < n; i += OFFSET) {
+    w = _mm256_load_ps(&input[i]);
+    x = _mm256_load_ps(&weight[i]);
     x = _mm256_mul_ps(w, x);
     u = _mm256_add_ps(u, x);
   }
   _mm256_store_ps(mm, u);
 
-  float sum = 0;
+  float sum = 0.0;
   for (int i = 0; i < OFFSET; i++) {
     sum += mm[i];
   }
-  for (int i = 0, j = lp.quot * OFFSET; i < lp.rem; i++, j++) {
-    sum += input[j] * weight[j];
+  for (int i = n - rem; i < n; i++) {
+    sum += input[i] * weight[i];
   }
   return sum;
 }
@@ -1159,7 +1170,7 @@ float dotAVX(float *input, float *weight, int n) {
 - 開発言語はC/C++を少し拡張したもの
   - 特有のキーワード
 - 用いるコンパイラはnvcc
-- ソースコードの拡張子は主に```.cu```
+- ソースコードの拡張子は主に`.cu`
 
 
 ## CUDAのコンパイルの仕組み
@@ -1187,32 +1198,32 @@ float dotAVX(float *input, float *weight, int n) {
 
 ## 関数の修飾子
 
-- ```__global__```
+- `__global__`
   - デバイスで実行させるカーネル関数
   - ホスト側からのみ呼び出し可能
   - 戻り値はvoid型のみ
-- ```__device__```
+- `__device__`
   - デバイス側でのみ呼び出し可能
   - 戻り値はvoid型でなくてもよい
-- ```__host__```
+- `__host__`
   - ホスト側でのみ呼び出し可能
   - ホスト側で実行される
     - 通常の関数
-  - ```__device__```と併用可能
+  - `__device__` と併用可能
     - ホストとデバイスの双方で利用可能な関数を作成できる
-  - ```__global__```との併用は不可
+  - `__global__` との併用は不可
 
 
 ## メモリの修飾子
 
-- ```__device__```
+- `__device__`
   - グローバルメモリ領域に確保
   - 全てのスレッドからアクセス可能
   - ホスト側からは読み書きが可能
-- ```__constant__```
+- `__constant__`
   - コンスタントメモリ領域に確保
   - 全てのスレッドから読み出し可能
-- ```__shared__```
+- `__shared__`
   - 共有メモリ領域に確保
   - スレッドの実行中はブロック単位で確保
   - ブロック内のスレッドから読み書き可能
@@ -1220,14 +1231,14 @@ float dotAVX(float *input, float *weight, int n) {
 
 ## カーネル関数の呼び出し (1)
 
-- ```kernelFunc<<<gridDim, blockDim, Sm, Stream>>>(a, b, c);```
+- `kernelFunc<<<gridDim, blockDim, Sm, Stream>>>(a, b, c);`
   - 少し特殊
-  - ```<<< >>>```部分は非型テンプレートのようなものだと解釈すればよい
+  - `<<< >>>` 部分は非型テンプレートのようなものだと解釈すればよい
 
 
 ## カーネル関数の呼び出し (2)
 
-- ```<<< >>>```内の変数の意味は以下の通り
+- `<<< >>>` 内の変数の意味は以下の通り
   - gridDim
     - グリッド中のブロック数
   - blockDim
@@ -1272,18 +1283,18 @@ vectorAdd(float *z, const float *x, const float *y, int n) {
 
 ## カーネル関数について (2)
 
-- ```blockIdx```変数
+- `blockIdx` 変数
   - グリッド上で動作しているブロックのインデックス
-  - ```x```と```y```というメンバを持つ
-- ```threadIdx```変数
+  - `x` と `y` というメンバを持つ
+- `threadIdx` 変数
   - ブロック上で動作しているスレッドのインデックス
-  - ```x```と```y```と```z```というメンバを持つ
-- ```gridDim```変数
+  - `x` と `y` と `z` というメンバを持つ
+- `gridDim` 変数
   - グリッドの大きさ
-  - ```x```と```y```というメンバを持つ
-- ```blockDim```変数
+  - `x` と `y` というメンバを持つ
+- `blockDim` 変数
   - ブロックの大きさ
-  - ```x```と```y```と```z```というメンバを持つ
+  - `x` と `y` と `z` というメンバを持つ
 
 
 ## カーネル関数呼び出し部 (1)
@@ -1348,14 +1359,14 @@ vectorAdd<<<gridsPerBlock, threadsPerBlock>>>(z_dev, x_dev, y_dev, 50000);
 ## dim3変数について
 
 - 以下の3つの宣言は全て同じ動作
-  - ```dim3 dimA(16, 16, 1);```
-  - ```dim3 dimB = dim3(16, 16, 1);```
-  - ```dim3 dimC = make_dim3(16, 16, 1);```
+  - `dim3 dimA(16, 16, 1);`
+  - `dim3 dimB = dim3(16, 16, 1);`
+  - `dim3 dimC = make_dim3(16, 16, 1);`
 
 - 引数省略時は1で埋められる
-  - ```dim3 dimA(16, 16);```
+  - `dim3 dimA(16, 16);`
     - (x, y, z) = (16, 16, 1)
-  - ```dim3 dimA(16);```
+  - `dim3 dimA(16);`
     - (x, y, z) = (16, 1, 1)
 
 
@@ -1370,14 +1381,14 @@ vectorAdd<<<gridsPerBlock, threadsPerBlock>>>(z_dev, x_dev, y_dev, 50000);
 
 - デバイス側にホスト側のメモリを参照させることはできない
   - デバイスのメモリを確保する必要がある
-    - ```cudaMalloc()```関数
-    - ```cudaFree()```関数
-    - ```cudaMemset()```関数
+    - `cudaMalloc()` 関数
+    - `cudaFree()` 関数
+    - `cudaMemset()` 関数
   - ホストのメモリをデバイスに転送
-    - ```cudaMemcpy()```関数
+    - `cudaMemcpy()` 関数
 - デバイスのメモリをホスト側で参照することはできない
   - デバイスのメモリをホストのメモリに転送する必要がある
-    - ```cudaMemcpy()```関数
+    - `cudaMemcpy()` 関数
 
 
 ## CUDA: サンプルプログラム (1)
@@ -1386,11 +1397,11 @@ vectorAdd<<<gridsPerBlock, threadsPerBlock>>>(z_dev, x_dev, y_dev, 50000);
   - Cuda 6.0におけるサンプル
 - 簡潔にするため，エラー処理は省略
   - CUDAの関数はエラーコードを返り値やポインタ引数にセットする仕組みとなっている
-  - プログラム中の```errCode```変数でエラーコードを受け取っている
-    - ```errCode == cudaSuccess```なら異常無し
+  - プログラム中の `errCode` 変数でエラーコードを受け取っている
+    - `errCode == cudaSuccess` なら異常無し
     - それ以外の場合は，異常あり
   - 実践ではちゃんと処理すること
-    - ```cudaGetErrorString()```関数に```errCode```を与えると，エラーメッセージ
+    - `cudaGetErrorString()` 関数に `errCode` を与えると，エラーメッセージ
       を取得することができる
 
 
@@ -1564,35 +1575,35 @@ CUDAをインストールすると，OpenCLもついてくる！
   - 通常のC/C++で記述可能
 - デバイス側のコード
   - 拡張されたC言語で記述する
-  - 拡張子は一般的に```.cl```
+  - 拡張子は一般的に `.cl`
 
 
 ## カーネル関数のソースコードについて
 
 - OpenCL用のC言語で記述する必要がある
   - C99に制限と拡張を加えたもの
-    - ポインタ引数は，```__global```，```__constant```，```__local```修飾されたものに限る
+    - ポインタ引数は， `__global` ，`__constant` ， `__local` 修飾されたものに限る
     - 引数にポインタのポインタを渡せない
-    - C99の可変長配列，フレキシブル配列は使えない
+    - C99の可変長配列：フレキシブル配列は使えない
     - 可変引数マクロは使えない
     - 標準ヘッダは使えない
     - 再帰できない
     - 戻り値はvoid型でなければならない
-    - doubleは実装されない場合がある
-    - size_tなどの型は利用できない
-  - ```float2```型や```float4```型といったベクトル型が利用可能
+    - `double` は実装されない場合がある
+    - `size_t` などの型は利用できない
+  - `float2` 型や `float4` 型といったベクトル型が利用可能
 
 
 ## ポインタのアドレス空間修飾子
 
-- ```__global```
+- `__global`
   - ホストから読み書き可能
-- ```__constant```
+- `__constant`
   - 読み取り専用
-  - CUDAの```__constant__```と同等
-- ```__local```
-  - CUDAの```__shared__```と同等
-- ```__private```
+  - CUDAの `__constant__` と同等
+- `__local`
+  - CUDAの `__shared__` と同等
+- `__private`
   - 省略時はこれが指定されたことになる
 
 
@@ -1618,15 +1629,15 @@ CUDAをインストールすると，OpenCLもついてくる！
 
 ## OpenCLプログラムの処理手順
 
-1. コンテキストの作成(```clCreateContext()```)
-2. コンテキストに含まれるデバイス取得(```clGetContextInfo()```)
-3. コマンドキューの作成(```clCreateCommandQueue()```)
-4. プログラムオブジェクトの作成(```clCreateProgramWithSource()```)
-5. カーネルプログラムのビルド(```clBuildProgram()```)
-6. カーネルオブジェクトの作成(```clCreateKernel()```)
-7. メモリオブジェクトの作成(```clCreateBuffer()```)
-8. カーネル引数の設定(```clSetKernelArg()```)，実行(```clEnqueueTask()```)
-9. メモリバッファから結果取得(```clEnqueueReadBuffer()```)し，表示
+1. コンテキストの作成( `clCreateContext()` )
+2. コンテキストに含まれるデバイス取得( `clGetContextInfo()` )
+3. コマンドキューの作成( `clCreateCommandQueue()` )
+4. プログラムオブジェクトの作成( `clCreateProgramWithSource()` )
+5. カーネルプログラムのビルド( `clBuildProgram()` )
+6. カーネルオブジェクトの作成( `clCreateKernel()` )
+7. メモリオブジェクトの作成( `clCreateBuffer()` )
+8. カーネル引数の設定( `clSetKernelArg()` )，実行( `clEnqueueTask()` )
+9. メモリバッファから結果取得( `clEnqueueReadBuffer()` )し，表示
 
 
 ## OpenCL: サンプルプログラム (1)
@@ -1634,8 +1645,8 @@ CUDAをインストールすると，OpenCLもついてくる！
 - ベクトル加算のサンプルを提示する
 - 簡潔にするため，エラー処理は省略
   - OpenCLの関数はエラーコードを返り値やポインタ引数にセットする仕組みとなっている
-  - プログラム中の```errCode```変数でエラーコードを受け取っている
-    - ```errCode == CL_SUCCESS```なら異常無し
+  - プログラム中の `errCode` 変数でエラーコードを受け取っている
+    - `errCode == CL_SUCCESS` なら異常無し
     - それ以外の場合は，以上あり
       - OepnCL側で各種異常用のenumを提供している
   - 実践ではちゃんと処理すること
@@ -1874,7 +1885,7 @@ Done
 - 独自の拡張言語
   - C/C++の仕様から逸れており，やや習熟するのに時間を要する
 - OpenCLほど，実行準備のオーバーヘッドが無い
-- カーネル関数中の```blockIdx```や```threadIdx```といったグローバル変数
+- カーネル関数中の `blockIdx` や `threadIdx` といったグローバル変数
   - やや抵抗がある
 - メジャーバージョンの変化毎に大きな仕様の変化
   - 過去のソースコードとあまり互換性がない

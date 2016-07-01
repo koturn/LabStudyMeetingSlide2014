@@ -219,7 +219,7 @@ stderr: Hello World!
 
 - 動的なメモリ確保は失敗することがある
 - C言語では以下のようにエラーチェック
-  - ```malloc()``` 等の返り値がNULLかどうか
+  - `malloc()` 等の返り値がNULLかどうか
 
 ```c
 int *array = calloc(10, sizeof(int));
@@ -229,8 +229,8 @@ if (array == NULL) {
 }
 ```
 
-- C++の```new```と```delete```の場合
-  - ```std::bad_alloc``` 例外の確認
+- C++の `new` と `delete` の場合
+  - `std::bad_alloc` 例外の確認
 
 ```cpp
 try {
@@ -445,8 +445,8 @@ int main(void) {
 ## main()関数の書き方 (2)
 
 - 引数は，以下のどちらか
-  1. ```void```
-  2. ```int argc, char *argv[]```
+  1. `void`
+  2. `int argc, char *argv[]`
 
 ```c
 // NG: 引数がvoidでない(C++ならOK)
@@ -633,10 +633,10 @@ double Rect::calcArea(void) {
 
 - C++においては，C言語のキャストを用いるべきでない
 - 以下の4つのキャストを用いるべき
-  1. static_cast
-  2. const_cast
-  3. reinterpret_cast
-  4. dynamic_cast
+  1. `static_cast`
+  2. `const_cast`
+  3. `reinterpret_cast`
+  4. `dynamic_cast`
 
 
 ## static_cast
@@ -698,9 +698,9 @@ unsigned char *ptr = reinterpret_cast<unsigned char *>(&value);
 
 ## C++でのメモリの動的確保 (1)
 
-- ```std::malloc()``` ， ```std::calloc()``` ， ```std::free()```は使わない
+- `std::malloc()` ， `std::calloc()` ， `std::free()`は使わない
   - コンストラクタ，デストラクタが呼び出されない
-- 代わりに```new``` と ```delete``` を用いる
+- 代わりに``new` と `delete` を用いる
   - コンストラクタ，デストラクタが呼び出される
 
 
@@ -788,7 +788,7 @@ $ g++ main.o util.o -o main.out
 ## extern "C" (4)
 
 - リンクエラーが発生する
-  - ```mymax(int, int)``` が見つからないらしい
+  - `mymax(int, int)` が見つからないらしい
 
 ```txt
 main.o:main.cpp:(.text+0x1f): undefined reference to `mymax(int, int)'
@@ -820,7 +820,7 @@ main:
   ...
 ```
 
-- main()で参照される ```mymax(int, int)``` は ```_Z5mymaxii``` というシンボル名に
+- main()で参照される `mymax(int, int)` は `_Z5mymaxii` というシンボル名に
   なっている
 
 
@@ -848,7 +848,7 @@ $ g++ main.o util.o -o main.out
 本質的な解決策
 
 - コンパイラにC言語の関数であることを伝える
-  - そのための ```extern "C"```
+  - そのための `extern "C"`
 - ヘッダファイルに記述するだけでよい
 
 
@@ -873,10 +873,10 @@ mymax(int a, int b);
 
 ## extern "C" (9)
 
-- ```extern "C"``` はC++の構文
+- `extern "C"` はC++の構文
   - C言語コンパイラでは認識されない
 - 以下のように条件コンパイルを行う必要がある
-  - マクロ```__cplusplus```が定義されているかどうかで判断
+  - マクロ `__cplusplus` が定義されているかどうかで判断
     - 定義されているならば，C++としてコンパイルしている
     - 定義されていないならば，C言語としてコンパイルしている
 
@@ -942,5 +942,5 @@ main:
   ...
 ```
 
-- 今度は，main()で参照される ```mymax(int, int)``` は ```mymax``` という
+- 今度は，main()で参照される `mymax(int, int)` は `mymax` という
   シンボル名になっている

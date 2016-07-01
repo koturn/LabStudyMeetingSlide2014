@@ -34,18 +34,18 @@
 ## 対応コンパイラ
 
 - gcc4.6以上より実装開始
-  - ```-std=gnu11```を付加してコンパイル
+  - `-std=gnu11` を付加してコンパイル
     - 特別，GNU拡張を利用しない理由がないならこれにする
-  - ```-std=c11```を付加してコンパイル
+  - `-std=c11` を付加してコンパイル
     - GNU拡張を利用できない
 - clang3.0以上より実装開始
 
 
 ## C11がコンパイル時に対応しているかどうか
 
-- ```__STDC_VERSION__``` マクロを調べる
-  - ```__STDC_VERSION__ >= 199901L``` なら，C99対応の環境
-  - ```__STDC_VERSION__ <  199901L``` なら，C99非対応の環境
+- `__STDC_VERSION__` マクロを調べる
+  - `__STDC_VERSION__ >= 199901L` なら，C99対応の環境
+  - `__STDC_VERSION__ <  199901L` なら，C99非対応の環境
 
 ```c
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
@@ -57,7 +57,6 @@
 // C99以前用のソースコードの記述
 
 #endif
-
 ```
 
 
@@ -95,16 +94,16 @@ int main(void) {
 
 - C99以前も各コンパイラで独自実装されていた
 - gcc, clang
-  - そのまま```inline```キーワードを使用可能
+  - そのまま `inline` キーワードを使用可能
 - MSVC
-  - ```__inline```
+  - `__inline`
 
 
 ## inline (3)
 
-- 以下のようなマクロを記述すると，C99でなくとも ```inline```
+- 以下のようなマクロを記述すると，C99でなくとも `inline`
   が使用可能になるかもしれない
-- 対応していない環境では ```inline``` を消す
+- 対応していない環境では `inline` を消す
 
 ```c
 #ifndef __cplusplus
@@ -125,10 +124,10 @@ int main(void) {
 - gcc
   - gcc 4.0 以降
   - 常にインライン展開することを指示
-  - ```__attribute__((always_inline)) inline```
+  - `__attribute__((always_inline)) inline`
 - MSVC
   - 可能な限りインライン展開することを指示
-  - ```__forceinline```
+  - `__forceinline`
 
 
 ## inline (5)
@@ -136,9 +135,9 @@ int main(void) {
 - 各コンパイラの独自拡張で，インライン展開しないことも指示できる
 
 - gcc
-  - ```__attribute__((noinline))```
+  - `__attribute__((noinline))`
 - MSVC
-  - ```__declspec(noinline)```
+  - `__declspec(noinline)`
 
 
 
@@ -153,19 +152,19 @@ int main(void) {
 ## restrict (2)
 
 - C99以前も各コンパイラで独自実装されていた
-  - ```restrict```はC++14にもないが，独自実装しているコンパイラなら使用可能
+  - `restrict` はC++14にもないが，独自実装しているコンパイラなら使用可能
 - gcc, clang
-  - ```__restrict```
-  - ```__restrict___```
+  - `__restrict`
+  - `__restrict___`
 - MSVC
-  - ```__restrict```
+  - `__restrict`
 
 
 ## restrict (3)
 
-- 以下のようなマクロを記述すると，C99でなくとも ```restrict```
+- 以下のようなマクロを記述すると，C99でなくとも `restrict`
   が使用可能になるかもしれない
-- 対応していない環境では ```restrict``` を消す
+- 対応していない環境では `restrict` を消す
 
 ```c
 #if _MSC_VER >= 1400
@@ -242,16 +241,16 @@ void vec_add(
 ## 新しいヘッダ
 
 - いくつかのヘッダが新しく導入された
-  - ```<inttypes.h>```
-  - ```<stdbool.h>```
-  - ```<stdint.h>```
+  - `<inttypes.h>`
+  - `<stdbool.h>`
+  - `<stdint.h>`
 
 
 
 
 ## 1行コメントのサポート
 
-- ```//```で始まる1行コメントが正式に導入された
+- `//` で始まる1行コメントが正式に導入された
 
 
 
@@ -261,7 +260,7 @@ void vec_add(
 - 要素数に変数をとることが可能となった
   - 配列の記法で動的配列を実現
 - メモリ解放を記述する必要はない
-- ```sizeof```演算子は実行時に処理される
+- `sizeof` 演算子は実行時に処理される
 
 ```c
 int func(int n) {
@@ -303,18 +302,18 @@ dbg_printf("a = %d\n", a);
 ## 対応コンパイラ
 
 - gcc4.6以上より実装開始
-  - ```-std=gnu11```を付加してコンパイル
+  - `-std=gnu11` を付加してコンパイル
     - 特別，GNU拡張を利用しない理由がないならこれにする
-  - ```-std=c11```を付加してコンパイル
+  - `-std=c11` を付加してコンパイル
     - GNU拡張を利用できない
 - clang3.0以上より実装開始
 
 
 ## C11がコンパイル時に対応しているかどうかをチェック
 
-- ```__STDC_VERSION__``` マクロを調べる
-  - ```__STDC_VERSION__ >= 201112L``` なら，C11対応の環境
-  - ```__STDC_VERSION__ <  201112L``` なら，C11非対応の環境
+- `__STDC_VERSION__` マクロを調べる
+  - `__STDC_VERSION__ >= 201112L` なら，C11対応の環境
+  - `__STDC_VERSION__ <  201112L` なら，C11非対応の環境
 
 ```c
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
@@ -326,7 +325,6 @@ dbg_printf("a = %d\n", a);
 // C11以前用のソースコードの記述
 
 #endif
-
 ```
 
 
@@ -338,8 +336,8 @@ dbg_printf("a = %d\n", a);
 
 - 従来のC言語ではオーバーロードできない
   - 引数の型と名前が異なる多数の関数を呼び出す必要があった
-- ```_Generic(foo, TYPE1: IDT1, TYPE2: IDT2, ..., TYPEN: IDTN)``` という形式
-  - 変数 ```foo``` の型によって，```_Generic``` 全体が ```IDT*``` に置き換わる
+- `_Generic(foo, TYPE1: IDT1, TYPE2: IDT2, ..., TYPEN: IDTN)` という形式
+  - 変数 `foo` の型によって，`_Generic` 全体が `IDT*` に置き換わる
   - コンパイル時の型による条件分岐が可能に
 
 
@@ -377,8 +375,8 @@ int main(int argc, char *argv[]) {
 - その関数から呼出元へ制御が戻らないことを明示
   - 戻り先のアドレスをスタックに積む必要がなくなる
   - 例:
-    - ```exit()``` 関数
-- C++11における ```[[noreturn]]``` と同じ
+    - `exit()` 関数
+- C++11における `[[noreturn]]` と同じ
 - 対応コンパイラ
   - gcc4.8以上
   - clang3.3以上
@@ -389,8 +387,8 @@ int main(int argc, char *argv[]) {
 ## _Static_assert
 
 - コンパイル時のassert
-- C++11における ```static_assert``` と同じ
-- 形式は ```_Static_assert(expr, msg)```
+- C++11における `static_assert` と同じ
+- 形式は `_Static_assert(expr, msg)`
 
 ```c
 #define N  100
@@ -407,16 +405,16 @@ int main(void) {
 
 ## アラインメント関係の機能追加
 
-- ```_Alignas``` 指定子
-- ```alignof``` 演算子
-- ```aligned_alloc()``` 関数
-- ```<stdalign.h>```ヘッダ
+- `_Alignas` 指定子
+- `alignof` 演算子
+- `aligned_alloc()` 関数
+- `<stdalign.h>` ヘッダ
 
 
 ## _Alignas演算子
 
 - 宣言する変数のアラインメントを指定する
-- C++11における ```alignas``` と同じ
+- C++11における `alignas` と同じ
 
 ```c
 _Alignas(16) int a = 10;
@@ -426,7 +424,7 @@ _Alignas(16) int a = 10;
 ## alignof演算子
 
 - 指定した変数のアラインメントを取得する
-  - C++11の ```alignof``` 演算子と同じ
+  - C++11の `alignof` 演算子と同じ
 
 ```c
 int a = 10;
@@ -442,11 +440,11 @@ printf("alignof(b) = %d", alignof(b));
 
 ## gets()関数の廃止
 
-- C11から```gets()```関数を廃止した
-  - ```gets()```関数はバッファオーバーフローの危険性があるため
-- ```gets()```関数を用いたプログラムはコンパイルエラーとなる
+- C11から`gets()` 関数を廃止した
+  - `gets()` 関数はバッファオーバーフローの危険性があるため
+- `gets()` 関数を用いたプログラムはコンパイルエラーとなる
   - 過去のプログラムがコンパイルできない可能性
-- 代わりにセキュアな```gets_s()```関数が実装
+- 代わりにセキュアな`gets_s()` 関数が実装
   - しかし，実装は必須ではない
   - 境界チェックを行う
   - MSVCでは独自拡張で導入されていた
@@ -470,10 +468,10 @@ printf("alignof(b) = %d", alignof(b));
 
 ## C++11がコンパイル時に対応しているかどうかをチェック
 
-- ```__cplusplus``` マクロを調べる
-  - ```__cplusplus >= 201103L``` なら，C++11対応の環境
-  - ```__cplusplus <  201103L``` なら，C++11非対応の環境
-- ```__GXX_EXPERIMENTAL_CXX0X__```が定義されているかどうか
+- `__cplusplus` マクロを調べる
+  - `__cplusplus >= 201103L` なら，C++11対応の環境
+  - `__cplusplus <  201103L` なら，C++11非対応の環境
+- `__GXX_EXPERIMENTAL_CXX0X__` が定義されているかどうか
   - g++のみ
   - C++0xでの実装
 
@@ -513,7 +511,7 @@ $ clang foo.o -o foo.out
 ## autoによる型推論
 
 - 型推論のためのキーワード
-  - C\#における```var```のようなもの
+  - C\#における `var` のようなもの
 - 宣言と同時に初期化する変数にのみ使用可能
 
 ```cpp
@@ -535,7 +533,7 @@ decltype(x + y) z = x + y;
 
 ## nullptr
 
-- C++では```#define NULL 0```と定義されていた
+- C++では `#define NULL 0` と定義されていた
   - ポインタではなく，整数として扱われるという問題
 
 ```cpp
@@ -553,7 +551,7 @@ foo(nullptr);  // void foo(char *); の呼び出し
 
 ## 範囲for
 
-- 他の言語における```foreach```文にあたる
+- 他の言語における `foreach` 文にあたる
 - リストの要素を順に走査する処理の記述が可能
 
 ```cpp
@@ -620,10 +618,10 @@ std::for_each(array, array + 10, [](int x) {
 ## 従来の関数宣言の問題点
 
 - 以下のコードを例にとる
-  - 加算演算子により```add```を実現する関数
-  - 戻り値の型は ```x``` と ```y``` の型によって決定される
+  - 加算演算子により `add` を実現する関数
+  - 戻り値の型は `x` と `y` の型によって決定される
 - コンパイルエラーとなる
-  - ```decltype``` のパース時点で，```x``` と ```y``` は登場していないため
+  - `decltype` のパース時点で， `x` と `y` は登場していないため
   - C++コンパイラは基本的に1pass
 
 ```cpp
@@ -638,8 +636,8 @@ decltype(x + y) myadd(const T1& x, const T2& y) {
 
 - 前述の問題を解決するために，以下の関数宣言が提案された
   - 戻り値の型を後置することで，引数の型をとることが可能
-    - ```decltype``` が活用可能
-  - ここでの ```auto``` は変数宣言の ```auto``` とは異なる意味を持つ
+    - `decltype` が活用可能
+  - ここでの `auto` は変数宣言の `auto` とは異なる意味を持つ
 
 ```cpp
 template<typename T1, typename T2>
@@ -655,7 +653,7 @@ auto add(const T1& x, const T2& y) -> decltype(x + y) {
 
 - 明示的な関数のオーバーライド
 - typeにより，overrideし損ねたときにコンパイルエラーを出す
-  - Javaの ```@Override``` と同じ
+  - Javaの `@Override` と同じ
 
 ```cpp
 class SuperClass {
@@ -706,8 +704,8 @@ void myabs(int a, int b) noexcept {
 ## C++11以前でのnoexcept
 
 - 各コンパイラで例外を投げないことを明示する独自拡張があった
-  - gccなら ```__attribute__((nothrow))```
-  - MSVCなら ```__declspec(nothrow)```
+  - gccなら `__attribute__((nothrow))`
+  - MSVCなら `__declspec(nothrow)`
 - C++11のnoexceptと宣言位置が異なる点が問題
   - マクロで互換性の問題を解決できない
 
@@ -731,7 +729,7 @@ int myabs(int a, int b) noexcept {
 
 ## usingによる別名テンプレート (1)
 
-- C++11以前では， ```typedef``` のテンプレートを作ることができなかった
+- C++11以前では， `typedef` のテンプレートを作ることができなかった
 
 ```cpp
 template <typename T1, typename T2>
@@ -744,8 +742,8 @@ typedef MyClass<int, T2>  FOO;
 
 ## usingによる別名テンプレート (2)
 
-- C++11では ```using``` というキーワードにより，別名のテンプレートを作ることが可能となった
-  - ```using namespace foo;``` の ```using``` と意味は異なる
+- C++11では `using` というキーワードにより，別名のテンプレートを作ることが可能となった
+  - `using namespace foo;` の `using` と意味は異なる
 
 ```cpp
 template <typename T1, typename T2>
@@ -758,7 +756,7 @@ using FOO = MyClass<int, T2>;
 
 ## usingによる型のalias
 
-- 従来は```typedef```で型の別名を定義していた
+- 従来は `typedef` で型の別名を定義していた
 - C++11でusingを用いた型の別名定義が可能となった
 
 ```cpp
@@ -822,7 +820,7 @@ struct Fib<0> {
 
 ## constexpr 例(2)
 
-- ```constexpr```によるフィボナッチ数列のコンパイル時計算
+- `constexpr` によるフィボナッチ数列のコンパイル時計算
 
 ```cpp
 constexpr unsigned int
@@ -839,16 +837,16 @@ fibonacci(unsigned int n)
 
 ## 関数の属性記述
 
-- 関数に```[[...]]```という形式で属性を記述できるようになった
-  - gccの ```__attribute__(...)``` に相当
-  - MSVCの ```__declspec(...)``` に相当
+- 関数に `[[...]]` という形式で属性を記述できるようになった
+  - gccの `__attribute__(...)` に相当
+  - MSVCの `__declspec(...)` に相当
 
 
 ## noreturn属性
 
 - その関数から制御が戻らないことを示す
-  - C11における ```_Noreturn``` と同様
-- 関数に ```[[noreturn]]``` を付加して記述
+  - C11における `_Noreturn` と同様
+- 関数に `[[noreturn]]` を付加して記述
 
 ```cpp
 [[noreturn]] void print_exit(const char *msg) {
@@ -887,7 +885,7 @@ fibonacci(unsigned int n)
 ## static_assert
 
 - コンパイル時のassert
-- ```constexpr```などと併用する
+- `constexpr` などと併用する
 
 ```cpp
 constexpr int N = 10;
@@ -898,7 +896,7 @@ static_assert(N + 10 != 20, "test2");  // fail
 
 ## C++11以前でのstatic_assertの実装
 
-- 静的配列を利用して，```static_assert```を実装していた
+- 静的配列を利用して， `static_assert` を実装していた
   - エラー時のメッセージを指定できない
 
 ```cpp
@@ -922,10 +920,10 @@ my_static_assert(N != 10);  // fail
 ## 従来の問題点 (1)
 
 - 以下のコードの問題点
-  1. 関数内で一時的に ```std::vector``` である ```v``` を生成
-  2. 生成した ```v``` に要素を追加
-  3. 関数の呼び出し元に，```v``` をコピーして返却
-  4. 呼び出し元でコピーされた ```v``` を受け取る
+  1. 関数内で一時的に `std::vector` である `v` を生成
+  2. 生成した `v` に要素を追加
+  3. 関数の呼び出し元に，`v` をコピーして返却
+  4. 呼び出し元でコピーされた `v` を受け取る
 
 ```cpp
 std::vector<int> func(void) {
@@ -967,7 +965,7 @@ int main(void) {
 
 ## moveを用いた解決
 
-- ```std::move()``` 関数は前述の問題を解決
+- `std::move()` 関数は前述の問題を解決
   - 返り値の返却にコピーコンストラクタの呼び出しをしない
   - シームレスな関数の設計が可能
 
@@ -1039,16 +1037,16 @@ $ clang foo.o -o foo.out
 ## 関数属性の追加
 
 - 関数属性が追加された
-- ```deprecated```属性
+- `deprecated` 属性
   - 廃止予定の関数であることを示す
-  - gccの ```__attribute__((deprecated))``` と同じ
+  - gccの `__attribute__((deprecated))` と同じ
 
 
 ## 導入されるかもしれない属性
 
 - ```pure```属性
   - 純粋関数であることを示す
-  - gccの ```__attribute__((const))``` と同じ
+  - gccの `__attribute__((const))` と同じ
 
 
 
@@ -1078,7 +1076,7 @@ int a = 10'000'000;
 
 - 実行時の数で配列サイズを指定することが可能になった
 - C99のものとの違い
-  - ```sizeof()```はサポートされない
+  - `sizeof()` はサポートされない
 
 ```cpp
 void func(int a) {
