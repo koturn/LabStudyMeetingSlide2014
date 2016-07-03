@@ -843,7 +843,9 @@ int main(void) {
 - SIMDはIntelのCPUだけのものではない
 - ARM CPUでもSIMD命令は用意されている
   - NEON命令
-    - 128bitのレジスタを用いたベクトル計算
+    - 64bit/128bitのレジスタを用いたベクトル計算
+  - 64bitのレジスタ: Dレジスタ(Double word register)
+  - 128bitのレジスタ: Qレジスタ(Quad word register)
 
 
 ## 実用例
@@ -1093,15 +1095,44 @@ float dotAVX(float *input, float *weight, int n) {
 ```
 
 
+## NEON: サンプルコード
+
+```cpp
+float dotNeon(float *input, float *weight, int n) {
+  static const int OFFSET = sizeof(float32x4_t) / sizeof(float);  // 16 / 4 == 4
+  int rem = n % OFFSET;
+  float32x4_t w, x, u;
+  ALIGNAS(sizeof(float32x4_t)) float mm[OFFSET] = {0};
+  u = vld1q_f32(mm);
+  for (int i = 0; i < n; i += OFFSET) {
+    w = vld1q_f32(&input[i]);
+    x = vld1q_f32(&weight[i]);
+    x = vmulq_f32(w, x);
+    u = vmulq_f32(u, x);
+  }
+  vst1q_f32(mm, u);
+
+  float sum = 0.0;
+  for (int i = 0; i < OFFSET; i++) {
+    sum += mm[i];
+  }
+  for (int i = n - rem; i < n; i++) {
+    sum += input[i] * weight[i];
+  }
+  return sum;
+}
+```
+
+
 ## SSEとAVXに関して
 
 - SSEとAVXが混在したコードにしない方がよい
   - SSEとAVXの切り替えにオーバーヘッド
   - 切り替えタイミング
-      - 128bit/256nitの組み込み命令を混在
-      - SSE/AVXのインラインアセンブラの混在
-      - SSE/AVX命令にコンパイルされたC/C++の浮動小数点コード
-      - 上記を含む関数やライブラリの呼び出し
+    - 128bit/256nitの組み込み命令を混在
+    - SSE/AVXのインラインアセンブラの混在
+    - SSE/AVX命令にコンパイルされたC/C++の浮動小数点コード
+    - 上記を含む関数やライブラリの呼び出し
 
 
 ## 自動ベクトル化
@@ -1936,12 +1967,17 @@ Done
 
 ## 参考文献 (3)
 
-- SSE関連
+- SSE/AVX/NEON関連
   - [さかな前線 &raquo; SSEとAVXで高次元ベクトルの内積計算を高速化してみた](http://daily.belltail.jp/?p=1520)
   - [SSE.浮動小数点演算手動最適化は本当に効果的なのか - デー](http://ultraist.hatenablog.com/entry/20080622/1214101497)
   - [SIMD演算 - MUGI COM](http://d.hatena.ne.jp/komugi_com/20080323/1206249192)
   - [概要: ストリーミング SIMD 拡張命令](http://wwweic.eri.u-tokyo.ac.jp/computer/manual/altix/compile/CC/Intel_Cdoc91/main_cls/mergedProjects/intref_cls/common/intref_sse_overview.htm)
   - [x86/x64 SIMD命令一覧表　（SSE～AVX2）](http://www.officedaytime.com/tips/simd.html)
+  - [ARM NEON Intrinsics - Using the GNU Compiler Collection (GCC)](https://gcc.gnu.org/onlinedocs/gcc-4.8.1/gcc/ARM-NEON-Intrinsics.html)
+  - [ARM NEON Development](http://www.add.ece.ufl.edu/4924/docs/arm/ARM%20NEON%20Development.pdf)
+  - [SIMD Assembly Tutorial: ARM NEON](https://people.xiph.org/~tterribe/daala/neon_tutorial.pdf)
+  - [NEON を使用して Zynq-7000 AP SoC でのソフトウェア性能を向上](http://japan.xilinx.com/support/documentation/application_notes/j_xapp1206-boost-sw-performance-zynq7soc-w-neon.pdf)
+  - [ARM gcc バッドノウハウ集](http://jr0bak.homelinux.net/~imai/linux/arm_gcc_badknowhow/arm_gcc_badknowhow.pdf)
 
 
 ## 参考文献 (4)
