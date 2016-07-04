@@ -611,7 +611,7 @@ static const double RANGE_B = M_PI;
 static const unsigned int N_DIV = 200000000;
 
 static unsigned int
-threadFunc(void *va_args);
+threadFunc(LPVOID va_args);
 
 static double
 integral(double (*f)(double x), double a, double b, size_t n);
