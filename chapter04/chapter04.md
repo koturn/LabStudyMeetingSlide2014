@@ -973,8 +973,7 @@ alignedMalloc(size_t size, size_t alignment) {
   return _aligned_malloc(size, alignment)
 #else
   void *p;
-  int ret = posix_memalign(&p, alignment, size);
-  return ret == 0 ? p : NULL;
+  return posix_memalign(&p, alignment, size) == 0 ? p : NULL;
 #endif
 }
 
@@ -994,8 +993,15 @@ alignedFree(void *ptr) {
 使用例
 
 ```c
-float *ptr = reinterpret_cast<float *>(alignedMalloc(1000 * sizeof(float), sizeof(__m128)));
-alignedFree(ptr);
+// std::malloc() と同じ要領で利用可能
+float *ptr1 = reinterpret_cast<float *>(alignedMalloc(1000 * sizeof(float), sizeof(__m128)));
+
+// 配置newで利用するのもよい
+int *ptr1 = new(reinterpret_cast<int *>(alignedMalloc(1000 * sizeof(i), sizeof(__m128i)))) int;
+
+// 解放は std::free() と同じ要領で
+alignedFree(ptr1);
+alignedFree(ptr2);
 ```
 
 
